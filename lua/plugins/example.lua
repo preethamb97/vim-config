@@ -1,6 +1,6 @@
--- since this is just an example spec, don't actually load anything here and return an empty spec
+-- This is your plugin configuration file
+-- You can add, disable, or configure LazyVim plugins here
 -- stylua: ignore
-if true then return {} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -30,15 +30,6 @@ return {
   -- disable trouble
   { "folke/trouble.nvim", enabled = false },
 
-  -- override nvim-cmp and add cmp-emoji
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-    end,
-  },
 
   -- change some telescope options and a keymap to browse plugin files
   {
@@ -152,23 +143,12 @@ return {
     end,
   },
 
-  -- the opts function can also be used to change the default opts:
+  -- customize lualine
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
       table.insert(opts.sections.lualine_x, "😄")
-    end,
-  },
-
-  -- or you can return new options to override all the defaults
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return {
-        --[[add your custom lualine config here]]
-      }
     end,
   },
 
